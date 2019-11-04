@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Controller : MonoBehaviour
+public class AdvancedPlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public bool isGrounded = false;
     Animator animator;
     Rigidbody2D rb2d;
     SpriteRenderer sprite;
+    public float moveSpeed = 5f;
+    public bool isGrounded = false;
     private bool facingRight;
+
 
     void Start()
     {
@@ -17,7 +18,6 @@ public class Player_Controller : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
-
 
     void Update()
     {
@@ -33,15 +33,16 @@ public class Player_Controller : MonoBehaviour
 
     }
 
+
     private void FixedUpdate()
     {
-        if (Input.GetKey("d") || Input.GetKey("right"))
+        if(Input.GetKey("d") || Input.GetKey("right"))
         {
             rb2d.velocity = new Vector2(2, rb2d.velocity.y);
             animator.Play("Rogue_walk_01");
             sprite.flipX = false;
         }
-        else if (Input.GetKey("a") || Input.GetKey("left"))
+        else if(Input.GetKey("a") || Input.GetKey("left"))
         {
             rb2d.velocity = new Vector2(-2, rb2d.velocity.y);
             animator.Play("Rogue_walk_01");
@@ -51,7 +52,13 @@ public class Player_Controller : MonoBehaviour
         {
             animator.Play("Rogue_idle_01");
         }
+
+        if (Input.GetKey("space"))
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 3);
+        }
     }
 
+
+
 }
-   
